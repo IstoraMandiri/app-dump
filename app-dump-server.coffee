@@ -39,7 +39,7 @@ Router.map ->
           tar: 'dump.tar'
 
       if @request.method is 'POST'
-        file = @request.files.appDumpUpload
+        file = @request.files?.appDumpUpload
 
         unless file?.name.split('.').pop() is 'tar'
           @response.statusCode = 400

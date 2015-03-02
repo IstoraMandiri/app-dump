@@ -1,6 +1,6 @@
 Package.describe({
   name: 'hitchcott:app-dump',
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'Backup-Restore your Database',
   git: 'https://github.com/hitchcott/app-dump',
   documentation: 'README.md'
@@ -20,7 +20,7 @@ Package.onUse(function(api) {
   // SERVER
   api.use([
     'coffeescript',
-    'iron:router@1.0.5'
+    'iron:router@0.9.4'
   ], ['server'])
 
   api.addFiles([
@@ -30,6 +30,7 @@ Package.onUse(function(api) {
 
   // CLIENT
   api.use([
+    'coffeescript',
     'templating'
   ], ['client'])
 
