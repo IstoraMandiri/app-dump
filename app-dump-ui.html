@@ -13,5 +13,5 @@
 </template>
 
 <template name="appDumpDownload">
-  <a class='app-dump-download btn btn-primary' href="/appDump{{#if downloadToken}}?token={{downloadToken}}{{/if}}">Download Backup</a>
+  <a class='app-dump-download btn btn-primary' target="_blank" href="/appDump{{#if downloadToken}}?token={{downloadToken}}{{/if}}">Download Backup</a>
 </template>

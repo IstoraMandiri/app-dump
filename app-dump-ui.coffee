@@ -1,5 +1,3 @@
-appDump = share.appDump
-
 templateHelpers =
   downloadToken : ->
     if Meteor.user()

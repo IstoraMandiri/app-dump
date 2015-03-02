@@ -1,7 +1,7 @@
 Package.describe({
   name: 'hitchcott:app-dump',
-  version: '0.0.2',
-  summary: 'Backup-Restore your Database',
+  version: '0.1.0',
+  summary: 'In-app Backup and Restore for your Mongo Database',
   git: 'https://github.com/hitchcott/app-dump',
   documentation: 'README.md'
 });
@@ -9,6 +9,7 @@ Package.describe({
 Npm.depends({
   "moment": "2.9.0",
   "formidable": "1.0.17",
+  "busboy": "0.2.9",
   "mongodb-backup": "https://github.com/hex7c0/mongodb-backup/archive/681ea44bd9946dbf9d2ca7560362a60d199b0959.tar.gz",
   "mongodb-restore": "https://github.com/hitchcott/mongodb-restore/archive/3bf27751b4d12eaddbba3149fc6d952d2fa4eecd.tar.gz"
 });
@@ -20,7 +21,7 @@ Package.onUse(function(api) {
   // SERVER
   api.use([
     'coffeescript',
-    'iron:router@0.9.4'
+    'iron:router@1.0.7'
   ], ['server'])
 
   api.addFiles([
