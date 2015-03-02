@@ -19,7 +19,7 @@ Package.onUse(function(api) {
 
   // SERVER
   api.use([
-    'coffeescript'
+    'coffeescript',
     'iron:router@1.0.5'
   ], ['server'])
 
