@@ -2,7 +2,7 @@ Package.describe({
   name: 'hitchcott:app-dump',
   version: '0.0.1',
   summary: 'Backup-Restore your Database',
-  git: '',
+  git: 'https://github.com/hitchcott/app-dump',
   documentation: 'README.md'
 });
 
