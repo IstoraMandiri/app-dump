@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "formidable": {
+      "version": "1.0.17"
+    },
     "moment": {
       "version": "2.9.0"
     },
@@ -137,6 +140,145 @@
           "dependencies": {
             "block-stream": {
               "version": "0.0.7"
+            },
+            "inherits": {
+              "version": "2.0.1"
+            }
+          }
+        }
+      }
+    },
+    "mongodb-restore": {
+      "version": "https://github.com/hitchcott/mongodb-restore/archive/3bf27751b4d12eaddbba3149fc6d952d2fa4eecd.tar.gz",
+      "dependencies": {
+        "bson": {
+          "version": "0.2.19",
+          "dependencies": {
+            "nan": {
+              "version": "1.6.2"
+            }
+          }
+        },
+        "mongodb": {
+          "version": "2.0.18",
+          "dependencies": {
+            "mongodb-core": {
+              "version": "1.1.14",
+              "dependencies": {
+                "mkdirp": {
+                  "version": "0.5.0",
+                  "dependencies": {
+                    "minimist": {
+                      "version": "0.0.8"
+                    }
+                  }
+                },
+                "rimraf": {
+                  "version": "2.2.6"
+                },
+                "kerberos": {
+                  "version": "0.0.9",
+                  "dependencies": {
+                    "nan": {
+                      "version": "1.6.2"
+                    }
+                  }
+                }
+              }
+            },
+            "readable-stream": {
+              "version": "1.0.31",
+              "dependencies": {
+                "core-util-is": {
+                  "version": "1.0.1"
+                },
+                "isarray": {
+                  "version": "0.0.1"
+                },
+                "string_decoder": {
+                  "version": "0.10.31"
+                },
+                "inherits": {
+                  "version": "2.0.1"
+                }
+              }
+            }
+          }
+        },
+        "logger-request": {
+          "version": "3.3.1",
+          "dependencies": {
+            "basic-authentication": {
+              "version": "1.5.12",
+              "dependencies": {
+                "setheaders": {
+                  "version": "0.1.1"
+                }
+              }
+            },
+            "on-finished": {
+              "version": "2.2.0",
+              "dependencies": {
+                "ee-first": {
+                  "version": "1.1.0"
+                }
+              }
+            },
+            "transfer-rate": {
+              "version": "1.0.6"
+            },
+            "winston": {
+              "version": "0.9.0",
+              "dependencies": {
+                "async": {
+                  "version": "0.9.0"
+                },
+                "colors": {
+                  "version": "1.0.3"
+                },
+                "cycle": {
+                  "version": "1.0.3"
+                },
+                "eyes": {
+                  "version": "0.1.8"
+                },
+                "isstream": {
+                  "version": "0.1.1"
+                },
+                "pkginfo": {
+                  "version": "0.3.0"
+                },
+                "stack-trace": {
+                  "version": "0.0.9"
+                }
+              }
+            }
+          }
+        },
+        "tar": {
+          "version": "1.0.3",
+          "dependencies": {
+            "block-stream": {
+              "version": "0.0.7"
+            },
+            "fstream": {
+              "version": "1.0.4",
+              "dependencies": {
+                "graceful-fs": {
+                  "version": "3.0.5"
+                },
+                "mkdirp": {
+                  "version": "0.5.0",
+                  "dependencies": {
+                    "minimist": {
+                      "version": "0.0.8"
+                    }
+                  }
+                },
+                "rimraf": {
+                  "version": "2.2.8"
+                }
+              }
             },
             "inherits": {
               "version": "2.0.1"

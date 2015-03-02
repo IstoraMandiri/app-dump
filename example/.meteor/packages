@@ -12,3 +12,4 @@ coffeescript
 accounts-base
 accounts-password
 accounts-ui
+twbs:bootstrap

@@ -1,37 +1,32 @@
 Package.describe({
   name: 'hitchcott:app-dump',
   version: '0.0.1',
-  // Brief, one-line summary of the package.
   summary: 'Backup-Restore your Database',
-  // URL to the Git repository containing the source code for this package.
   git: '',
-  // By default, Meteor will default to using README.md for documentation.
-  // To avoid submitting documentation, set this field to null.
   documentation: 'README.md'
+});
+
+Npm.depends({
+  "moment": "2.9.0",
+  "formidable": "1.0.17",
+  "mongodb-backup": "https://github.com/hex7c0/mongodb-backup/archive/681ea44bd9946dbf9d2ca7560362a60d199b0959.tar.gz",
+  "mongodb-restore": "https://github.com/hitchcott/mongodb-restore/archive/3bf27751b4d12eaddbba3149fc6d952d2fa4eecd.tar.gz"
 });
 
 Package.onUse(function(api) {
 
   api.versionsFrom('1.0.3.2');
 
-  // SERVER + CLIENT
+  // SERVER
   api.use([
     'coffeescript'
-  ], ['client', 'server'])
-
-  // SERVER
-  Npm.depends({
-    "moment": "2.9.0",
-    "mongodb-backup": "https://github.com/hex7c0/mongodb-backup/archive/681ea44bd9946dbf9d2ca7560362a60d199b0959.tar.gz"
-  });
-
-  api.use([
-    'cfs:http-methods'
+    'iron:router@1.0.5'
   ], ['server'])
 
   api.addFiles([
-    'app-dump.coffee'
+    'app-dump-server.coffee'
   ], ['server']);
+
 
   // CLIENT
   api.use([
@@ -39,14 +34,13 @@ Package.onUse(function(api) {
   ], ['client'])
 
   api.addFiles([
-    'ui/app-dump-ui.html',
-    'ui/app-dump-ui.coffee'
+    'app-dump-ui.html',
+    'app-dump-ui.coffee'
   ], ['client']);
 
-  api.export('appDump', 'server')
+  api.export('appDump', ['server'])
 
 });
-
 
 // Package.onTest(function(api) {
 //   api.use('tinytest');

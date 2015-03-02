@@ -1,4 +1,13 @@
 <body>
-  {{> loginButtons}}
-  {{> appDumpUI}}
+  {{> test}}
 </body>
+
+<template name="test">
+  {{> loginButtons}}
+  <hr>
+  {{> appDumpUI}}
+  <div class="add">Add Item</div>
+  {{#each items}}
+    {{date}}
+  {{/each}}
+</template>

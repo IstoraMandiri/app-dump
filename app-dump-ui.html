@@ -1,0 +1,17 @@
+<template name="appDumpUI">
+  {{> appDumpUpload}}
+  <br>
+  {{> appDumpDownload}}
+</template>
+
+<template name="appDumpUpload">
+  <form enctype="multipart/form-data" class='form-group'>
+    <label>Restore Backup</label>
+    <input type="file" class='app-dump-upload' name='appDumpUpload' accept=".tar">
+    <input type="hidden" value="{{downloadToken}}" name="token">
+  </form>
+</template>
+
+<template name="appDumpDownload">
+  <a class='app-dump-download btn btn-primary' href="/appDump{{#if downloadToken}}?token={{downloadToken}}{{/if}}">Download Backup</a>
+</template>
