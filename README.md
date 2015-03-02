@@ -20,11 +20,17 @@ if Meteor.isServer
 
 :thumbsup: Should work on meteor.com hosting
 
+
+## What's wrong with [`hitchcott:backup-restore`](https://github.com/hitchcott/meteor-backup-restore/)?
+
+It doesn't work with the meteor.com deployment servers because it requires MongoDB to be installed on the host system. This version uses a pure node solution and does not require `mongodump` or `mongorestore`. `hitchcott:app-dump` also uses streams for serving the tar, so it's a bit more efficient and secore.
+
+
 ## TODO
 
 Tests
 
-## Author
+## Author
 
 Chris Hitchcott, 2014
 
