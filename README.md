@@ -2,6 +2,8 @@
 
 ### A Simple In-App Backup/Restore solution for Meteor
 
+Example: http://app-dump-example.meteor.com/, or check the `/example` folder
+
 Generates a tar backup of the mongo collection on demand, which can be uploaded to restore.
 
 Use `{{> appDumpUI}}` to add upload/download UI to your template.
