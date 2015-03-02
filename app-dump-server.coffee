@@ -12,19 +12,18 @@ Router.map ->
     path: '/appDump',
     where: 'server',
     action: ->
+      self = @
       req = @request
       res = @response
 
-      token = if req.method is 'GET' then req.query.token else req.body.token
-      token?= ''
-      @user = Meteor.users.findOne({"services.resume.loginTokens.hashedToken": Accounts._hashLoginToken(token)});
-
-      if !appDump.allow.apply(@)
-        res.statusCode = 401
-        res.end 'Unauthorized'
-        return false
-
       if req.method is 'GET'
+        token = req.query.token || ''
+        self.user = Meteor.users.findOne({"services.resume.loginTokens.hashedToken": Accounts._hashLoginToken(token)});
+
+        if !appDump.allow.apply self
+          res.statusCode = 401
+          res.end 'Unauthorized'
+          return false
 
         safe =
           host: req.headers.host.replace(/[^a-z0-9]/gi, '-').toLowerCase()
@@ -32,7 +31,6 @@ Router.map ->
           date: moment().format("YY-MM-DD_HH-mm-ss")
 
         filename = "meteordump_#{safe.app}_#{safe.host}_#{safe.date}.tar"
-
 
         res.statusCode = 200
         res.setHeader 'Content-disposition', "attachment; filename=#{filename}"
@@ -43,12 +41,36 @@ Router.map ->
           tar: 'dump.tar'
 
       if req.method is 'POST'
-        busboy = new Busboy headers: req.headers
-        busboy.on "file", (fieldname, file, filename, encoding, mimetype) ->
 
-          unless filename.split('.').pop() is 'tar'
+        busboy = new Busboy
+          headers: req.headers
+          limits:
+            fields:1
+            files:1
+
+        token = undefined
+
+        busboy.on "field", (fieldname, val) ->
+          if fieldname is 'token'
+            token = val
+
+        busboy.on "file", Meteor.bindEnvironment (fieldname, file, filename) ->
+          if fieldname isnt 'appDumpUpload' or filename.split('.').pop() isnt 'tar'
             res.statusCode = 400
             res.end 'Incorrect file type. Expecting a file ending in .tar'
+            return false
+
+          unless file?
+            res.statusCode = 400
+            res.end 'File not found'
+            return false
+
+          self.user = Meteor.users.findOne({"services.resume.loginTokens.hashedToken": Accounts._hashLoginToken(token)})
+
+          if !appDump.allow.apply(self)
+            res.statusCode = 401
+            res.end 'Unauthorized'
+            return false
 
           restore
             uri: process.env.MONGO_URL

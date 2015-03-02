@@ -7,8 +7,8 @@
 <template name="appDumpUpload">
   <form enctype="multipart/form-data" class='form-group'>
     <label>Restore Backup</label>
-    <input type="file" class='app-dump-upload' name='appDumpUpload' accept=".tar">
     <input type="hidden" value="{{downloadToken}}" name="token">
+    <input type="file" class='app-dump-upload' name='appDumpUpload' accept=".tar">
   </form>
 </template>
 
