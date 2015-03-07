@@ -1,7 +1,7 @@
 backup = Npm.require('mongodb-backup')
 restore = Npm.require('mongodb-restore')
 moment = Npm.require('moment')
-Busboy = Npm.require("Busboy")
+Busboy = Npm.require("busboy")
 fs = Npm.require('fs')
 
 appDump =
