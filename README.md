@@ -4,11 +4,11 @@
 
 Example: http://app-dump-example.meteor.com/, or check the `/example` folder
 
-Generates a tar backup of the mongo collection on demand, which can be uploaded to restore.
+Generates a downloadable tar backup of the current mongo database, which can be uploaded to restore.
 
-Use `{{> appDumpUI}}` to add upload/download UI to your template.
+Use `{{> appDumpUI}}` to add download and upload UI to your template.
 
-Secure the upload method on the server:
+Secure the download and upload method on the server:
 
 ```
 if Meteor.isServer
@@ -20,7 +20,7 @@ if Meteor.isServer
 
 :warning: Restoring a backup will destroy existing data.
 
-:thumbsup: Should work on meteor.com hosting
+:thumbsup: Works on meteor.com hosting.
 
 
 ## What's wrong with [`hitchcott:backup-restore`](https://github.com/hitchcott/meteor-backup-restore/)?
