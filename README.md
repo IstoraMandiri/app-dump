@@ -38,6 +38,8 @@ Tests
 
 Chris Hitchcott, 2014
 
+MIT License
+
 ## Thanks to
 
 [hex7c0](https://github.com/hex7c0) for creating [mongodb-backup](https://github.com/hex7c0/mongodb-backup) and [mongodb-restore](https://github.com/hex7c0/mongodb-restore)
