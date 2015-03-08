@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'hculap:app-dump',
-  version: '0.1.2',
-  summary: 'In-app Backup and Restore for your Mongo Database (busyboy fix for ubuntu)',
-  git: 'https://github.com/hculap/app-dump',
+  name: 'hitchcott:app-dump',
+  version: '0.1.3',
+  summary: 'In-app Backup and Restore for your Mongo Database',
+  git: 'https://github.com/hitchcott/app-dump',
   documentation: 'README.md'
 });
 
