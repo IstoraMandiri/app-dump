@@ -18,6 +18,8 @@ if Meteor.isServer
       return true
 ```
 
+:exclamation: I have experienced an issue with large grid-fs collections being restored while writes are occuring. This is being looked in to. In the meantime use `mongodump` for mission critical operations.
+
 :warning: Restoring a backup will destroy existing data.
 
 :thumbsup: Works on meteor.com hosting.
