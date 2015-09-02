@@ -10,8 +10,8 @@ Npm.depends({
   "moment": "2.9.0",
   "formidable": "1.0.17",
   "busboy": "0.2.9",
-  "mongodb-backup": "https://github.com/hex7c0/mongodb-backup/archive/681ea44bd9946dbf9d2ca7560362a60d199b0959.tar.gz",
-  "mongodb-restore": "https://github.com/hitchcott/mongodb-restore/archive/3bf27751b4d12eaddbba3149fc6d952d2fa4eecd.tar.gz"
+  "mongodb-backup": "1.3.0",
+  "mongodb-restore": "1.3.0"
 });
 
 Package.onUse(function(api) {
