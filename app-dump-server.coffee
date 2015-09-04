@@ -22,10 +22,10 @@ Router.map ->
         self.options = {}
 
         # parse the collections
-        if self.options.collections
-          check self.options.collections, String
+        if req.query.collections
+          check req.query.collections, String
 
-          self.options.collections = self.options.collections.split(',').map (col) -> col.trim()
+          self.options.collections = req.query.collections.split(',').map (col) -> col.trim()
 
           if self.options.collections.length is 0
             self.options.collections = null
