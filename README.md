@@ -1,4 +1,4 @@
-# Meteor App-Dump
+# Metoer App-Dump
 
 ### A Simple In-App Backup/Restore solution for Meteor
 
@@ -10,7 +10,7 @@ Use `{{> appDumpUI}}` to add download and upload UI to your template.
 
 Secure the download and upload method on the server:
 
-```
+```coffeescript
 if Meteor.isServer
   appDump.allow = ->
     # do your own auth here -- eg. check if user is an admin...
@@ -18,12 +18,18 @@ if Meteor.isServer
       return true
 ```
 
+Additionally, if you're using iron-router hooks to secure your routes, use the following to add an exception (thanks @Khalid545):
+
+```coffeescript
+Router.onBeforeAction IR_Filters.mustBeSignedIn,
+  except: ['appDumpHTTP']
+```
+
 :exclamation: I have experienced an issue with large grid-fs collections being restored while writes are occuring. This is being looked in to. In the meantime use `mongodump` for mission critical operations.
 
 :warning: Restoring a backup will destroy existing data.
 
-:thumbsup: Works on meteor.com hosting.
-
+:thumbsup: Works on meteor.com hosting
 
 ## What's wrong with [`hitchcott:backup-restore`](https://github.com/hitchcott/meteor-backup-restore/)?
 
