@@ -16,6 +16,19 @@ Router.map ->
       req = @request
       res = @response
 
+      mongoCollections = null
+      mongoQuery = null
+      mongoDrop = true
+      requestedFilename = null 
+
+      for param in req._parsedUrl.query.split('&')
+        key = param.substring(0,2)
+        value = param.substring(2)
+        if key is 'c=' then mongoCollections = value.replace(/\s+/g, '').split(',')
+        if key is 'q=' then mongoQuery = value
+        if key is 'd=' then mongoDrop = value
+        if key is 'f=' then requestedFilename = value
+
       if req.method is 'GET'
         token = req.query.token || ''
         self.user = Meteor.users.findOne({"services.resume.loginTokens.hashedToken": Accounts._hashLoginToken(token)});
@@ -30,18 +43,26 @@ Router.map ->
           app: process.env.PWD.split('/').pop().replace(/[^a-z0-9]/gi, '-').toLowerCase()
           date: moment().format("YY-MM-DD_HH-mm-ss")
 
-        filename = "meteordump_#{safe.app}_#{safe.host}_#{safe.date}.tar"
+        if requestedFilename is null
+          filename = "meteordump_#{safe.app}_#{safe.host}_#{safe.date}.tar"
+        else
+          filename = requestedFile
 
         res.statusCode = 200
         res.setHeader 'Content-disposition', "attachment; filename=#{filename}"
 
-        backup
+        bOpts =
           uri: process.env.MONGO_URL
           stream: res
           tar: 'dump.tar'
 
-      if req.method is 'POST'
+        if mongoQuery isnt null then bOpts.query = mongoQuery
+        if mongoCollections isnt null then bOpts.collections = mongoCollections
 
+        backup bOpts
+
+
+      if req.method is 'POST'
         busboy = new Busboy
           headers: req.headers
           limits:
@@ -72,10 +93,14 @@ Router.map ->
             res.end 'Unauthorized'
             return false
 
-          restore
+          rOpts =
             uri: process.env.MONGO_URL
             stream: file
-            drop: true
+            drop: mongoDrop
             callback : -> res.end()
 
+          restore rOpts
+
         req.pipe busboy
+
+

@@ -15,3 +15,33 @@
 <template name="appDumpDownload">
   <a class='app-dump-download btn btn-primary' target="_blank" href="/appDump{{#if downloadToken}}?token={{downloadToken}}{{/if}}">Download Backup</a>
 </template>
+
+
+<template name="appDumpCollectionDownload">
+	<h4>
+		Downlod from a collection using the mongo query selector.
+	</h4>
+	<form class='form-group'>
+	    <input type="hidden" value="{{downloadToken}}" id="token" name="token">
+	    <div class="row">
+	    	<div class="col-md-4">
+				<strong>collections</strong>: [String] - Comma seperated list of collection names.
+	    	</div>
+	    	<div class="col-md-8">
+				<input type="text" name="c" value="exercises,exerciseMedia" 
+					style="width:100%" id="dbCollections" placeholder="Collection names">
+	    	</div>
+    	</div>
+	    <div class="row">
+	    	<div class="col-md-4">
+				<strong>query</strong>: String - mongo find selector
+	    	</div>
+	    	<div class="col-md-8">
+				<input type="text" name="q" value="{}"
+					style="width:100%" id="dbSelector" placeholder="Collection query selector">
+	    	</div>
+    	</div>
+		<a class='app-dump-collectionDownload btn btn-primary'>Download Backup</a>
+	</form>
+</template>
+
