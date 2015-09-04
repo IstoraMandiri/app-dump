@@ -2,6 +2,15 @@
 
 ### A Simple In-App Backup/Restore solution for Meteor
 
+:exclamation: This package should be used a simple tool to aid development. Use `mongodump` and `mongorestore` proper for mission critical operations.
+
+:warning: Restoring a backup will destroy existing data.
+
+:thumbsup: Works on meteor.com hosting
+
+
+## Usage
+
 Example: http://app-dump-example.meteor.com/, or check the `/example` folder
 
 Generates a downloadable tar backup of the current mongo database, which can be uploaded to restore.
@@ -32,12 +41,6 @@ You can use `{{> appDumpUI advanced=true}}` to get additional options:
 * Specific query backup (in JSON format, eg `{"deleted":false}`)
 
 
-:exclamation: I have experienced an issue with large grid-fs collections being restored while writes are occuring. This is being looked in to. In the meantime use `mongodump` for mission critical operations.
-
-:warning: Restoring a backup will destroy existing data.
-
-:thumbsup: Works on meteor.com hosting
-
 ## What's wrong with [`hitchcott:backup-restore`](https://github.com/hitchcott/meteor-backup-restore/)?
 
 It doesn't work with the meteor.com deployment servers because it requires MongoDB to be installed on the host system. 
@@ -48,6 +51,7 @@ It doesn't work with the meteor.com deployment servers because it requires Mongo
 ## TODO
 
 ```
+- [bug] I have experienced an issue with large grid-fs collections being restored while writes are occuring.
 - Tests
 ```
 
@@ -59,6 +63,8 @@ Chris Hitchcott, 2014, MIT License
 ## Contributors
 
 Benjamin Chalich, 2015 - pull request to add query parameters to adjust functionality.
+
+
 
 
 ## Thanks to
