@@ -8,10 +8,9 @@ Package.describe({
 
 Npm.depends({
   "moment": "2.9.0",
-  "formidable": "1.0.17",
   "busboy": "0.2.9",
   "mongodb-backup": "1.3.0",
-  "mongodb-restore": "1.3.0"
+  "mongodb-restore": "https://github.com/hitchcott/mongodb-restore/archive/3bf27751b4d12eaddbba3149fc6d952d2fa4eecd.tar.gz"
 });
 
 Package.onUse(function(api) {
