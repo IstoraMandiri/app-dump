@@ -2,6 +2,8 @@
 
 ### A Simple In-App Backup/Restore solution for Meteor
 
+![App-Dump UI Demo](http://i.imgur.com/rlSvUzB.png)
+
 :exclamation: This package should be used a simple tool to aid development. Use `mongodump` and `mongorestore` proper for mission critical operations.
 
 :warning: Restoring a backup will destroy existing data.
