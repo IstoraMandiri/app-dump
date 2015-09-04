@@ -21,9 +21,9 @@ Template.appDumpDownload.events
 
 Template.appDumpUpload.events
   'change .app-dump-upload' : (e) ->
-    form = $(e.currentTarget).parent()[0]
-    formData = new FormData(form)
-    console.log 'got form data', JSON.stringify formData
+    $form = $(e.currentTarget).closest 'form'
+    formData = new FormData($form[0])
+
     $.ajax
       type: "POST"
       url: '/appDump'

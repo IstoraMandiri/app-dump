@@ -18,6 +18,7 @@ Router.map ->
 
 
       if req.method is 'GET'
+
         req.query.parser?= ''
         check req.query.parser, String
 
@@ -80,21 +81,27 @@ Router.map ->
 
 
       if req.method is 'POST'
-
         busboy = new Busboy
           headers: req.headers
           limits:
-            fields:2
+            fields:3
             files:1
 
         token = undefined
-        self.options = drop: false
+        self.options =
+          drop: false
+          parser: 'bson'
 
         busboy.on "field", (fieldname, val) ->
           if fieldname is 'token'
+            check val, String
             token = val
           if fieldname is 'drop'
             self.options.drop = true
+          if fieldname is 'parser'
+            # parser isn't being used for restores becuase it doesn't work well with json
+            check val, String
+            self.options.parser = val
 
         busboy.on "file", Meteor.bindEnvironment (fieldname, file, filename) ->
 
@@ -118,6 +125,7 @@ Router.map ->
           restoreOptions =
             uri: process.env.MONGO_URL
             stream: file
+            parser: self.options.parser
             drop: self.options.drop
             callback : -> res.end()
 

@@ -43,10 +43,9 @@
       <div class="form-group">
         <label>Parser <span class='text-muted'>output format</span></label>
         <select name="parser" class="form-control">
-          <option value="bson">BSON - Required for binary data</option>
-          <option value="json">JSON - Human readable</option>
+          <option value="bson">BSON - Default</option>
+          <option value="json">JSON - Cannot restore, human readable</option>
         </select>
-
       </div>
     {{/if}}
     <input type="hidden" value="{{downloadToken}}" id="token" name="token">
