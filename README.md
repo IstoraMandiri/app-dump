@@ -25,6 +25,13 @@ Router.onBeforeAction IR_Filters.mustBeSignedIn,
   except: ['appDumpHTTP']
 ```
 
+You can use `{{> appDumpUI advanced=true}}` to get additional options:
+
+* Drop collections on restore
+* Specific collection backup
+* Specific query backup (in JSON format, eg `{"deleted":false}`)
+
+
 :exclamation: I have experienced an issue with large grid-fs collections being restored while writes are occuring. This is being looked in to. In the meantime use `mongodump` for mission critical operations.
 
 :warning: Restoring a backup will destroy existing data.
@@ -38,38 +45,21 @@ It doesn't work with the meteor.com deployment servers because it requires Mongo
 `hitchcott:app-dump` uses a pure node implementation, so does not require `mongodump` or `mongorestore`. It also uses streams for serving the tar, so it's a bit more efficient and secure.
 
 
-## A little flexability
-
-app-dump provides a server route which proceses the requests for backup and restore. This modification enables a couple of 
-query parameters to alter how the backup or restore is performed.
-
-### backup
-
-/appDump?[c=collection1,collection2][q={field: {$eq:4}}][&f=newNameForTarFile]
-
-c : String - comma seperated list of collections to backup. default operation without parameter is to backup all collections in the database.
-q : String - mongo selector to run aginst collections in the backup.
-f : String - override the default tar file name which is downloaded.
-
-
-### restore
-
-/appDump?[d=[true|false]]
-
-d : Boolean - default true which drops the database before restore. false to restore with drop.
-
-
 ## TODO
 
-Tests
+```
+- Tests
+```
+
 
 ## Author
 
-Chris Hitchcott, 2014
+Chris Hitchcott, 2014, MIT License
+
+## Contributors
 
 Benjamin Chalich, 2015 - pull request to add query parameters to adjust functionality.
 
-MIT License
 
 ## Thanks to
 

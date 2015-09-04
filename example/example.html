@@ -1,13 +1,39 @@
 <body>
   {{> test}}
 </body>
-
 <template name="test">
-  {{> loginButtons}}
-  <hr>
-  {{> appDumpUI}}
-  <div class="add">Add Item</div>
-  {{#each items}}
-    {{date}}
-  {{/each}}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1><a href="https://github.com/hitchcott/app-dump" target="_blank">App-Dump</a> Demo</h1>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="well">
+          <h4>Simple Mode</h4>
+          <hr> {{> appDumpUI}}
+        </div>
+
+        <div class="well">
+          <h4>Advanced options</h4>
+          <hr> {{> appDumpUI advanced=true}}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h3>Test Data</h3>
+        <div class="pull-right delete btn btn-danger">Delete Items</div>
+        <div class="add btn btn-success">Add Item</div>
+        <hr>
+        <ul>
+          {{#each items}}
+          <li>
+            {{date}}
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>

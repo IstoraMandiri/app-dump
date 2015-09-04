@@ -4,31 +4,26 @@ templateHelpers =
       return Accounts?._storedLoginToken()
 
 Template.appDumpDownload.helpers templateHelpers
-
-
-Template.appDumpCollectionDownload.helpers templateHelpers
-
-Template.appDumpCollectionDownload.events
-  'click .app-dump-collectionDownload' : (e) ->
-    form = $(e.currentTarget).parent()[0]
-    formData = new FormData(form)
-
-    collectionDumpUrl = '/appDump'
-    collectionDumpUrl += '?token=' +$('#token').val()
-    collectionDumpUrl += '&c=' +$('#dbCollections').val()
-    collectionDumpUrl += '&s=' +$('#dbSelector').val()
-
-    console.log 'collectionDumpUrl:', collectionDumpUrl
-    window.open(collectionDumpUrl, '_blank');
-
-
 Template.appDumpUpload.helpers templateHelpers
+
+Template.appDumpDownload.events
+  'click .app-dump-download' : (e) ->
+    e.preventDefault()
+
+    $form = $(e.currentTarget).closest 'form'
+
+    collectionDumpUrl = '/appDump?'
+    for dataItem in $form.serializeArray()
+      if dataItem.value
+        collectionDumpUrl += "&#{encodeURIComponent dataItem.name}=" + encodeURIComponent dataItem.value
+
+    window.open collectionDumpUrl, collectionDumpUrl
 
 Template.appDumpUpload.events
   'change .app-dump-upload' : (e) ->
     form = $(e.currentTarget).parent()[0]
     formData = new FormData(form)
-
+    console.log 'got form data', JSON.stringify formData
     $.ajax
       type: "POST"
       url: '/appDump'

@@ -1,47 +1,50 @@
 <template name="appDumpUI">
-  {{> appDumpUpload}}
-  <br>
-  {{> appDumpDownload}}
+  <div class="row hitchcott-app-dump">
+    <div class="col-sm-12">
+      {{> appDumpUpload}}
+      <hr>
+      {{> appDumpDownload}}
+    </div>
+  </div>
 </template>
 
 <template name="appDumpUpload">
-  <form enctype="multipart/form-data" class='form-group'>
-    <label>Restore Backup</label>
-    <input type="hidden" value="{{downloadToken}}" name="token">
-    <input type="file" class='app-dump-upload' name='appDumpUpload' accept=".tar">
+  <form enctype="multipart/form-data">
+      <input type="hidden" value="{{downloadToken}}" name="token">
+    <div class="form-group">
+      <span class="btn btn-success btn-file">
+        <input type="file" class='app-dump-upload' name='appDumpUpload' accept=".tar"> Restore Backup
+      </span>
+    </div>
+    {{#if advanced}}
+      <div class="form-group">
+        <label>
+          <input type="checkbox" value="drop" name="drop" checked='checked'>
+          Drop Existing Data?
+        </label>
+      </div>
+    {{else}}
+      <input type="hidden" value="true" name="drop">
+    {{/if}}
   </form>
 </template>
 
 <template name="appDumpDownload">
-  <a class='app-dump-download btn btn-primary' target="_blank" href="/appDump{{#if downloadToken}}?token={{downloadToken}}{{/if}}">Download Backup</a>
-</template>
-
-
-<template name="appDumpCollectionDownload">
-	<h4>
-		Downlod from a collection using the mongo query selector.
-	</h4>
-	<form class='form-group'>
-	    <input type="hidden" value="{{downloadToken}}" id="token" name="token">
-	    <div class="row">
-	    	<div class="col-md-4">
-				<strong>collections</strong>: [String] - Comma seperated list of collection names.
-	    	</div>
-	    	<div class="col-md-8">
-				<input type="text" name="c" value="exercises,exerciseMedia" 
-					style="width:100%" id="dbCollections" placeholder="Collection names">
-	    	</div>
-    	</div>
-	    <div class="row">
-	    	<div class="col-md-4">
-				<strong>query</strong>: String - mongo find selector
-	    	</div>
-	    	<div class="col-md-8">
-				<input type="text" name="q" value="{}"
-					style="width:100%" id="dbSelector" placeholder="Collection query selector">
-	    	</div>
-    	</div>
-		<a class='app-dump-collectionDownload btn btn-primary'>Download Backup</a>
-	</form>
+  <form>
+    {{#if advanced}}
+      <div class="form-group">
+        <label>Collections <span class='text-muted'>comma seperated list of collection names</span></label>
+        <input type="text" class='form-control' name="collections" placeholder="e.g. Users, Posts, Comments">
+      </div>
+      <div class="form-group">
+        <label>Query <span class='text-muted'>mongo find selector in JSON format</span></label>
+        <input type="text" name="query" placeholder='e.g. {"deleted": {"$ne": true}}' class='form-control'>
+      </div>
+    {{/if}}
+    <input type="hidden" value="{{downloadToken}}" id="token" name="token">
+    <div class="form-group">
+      <a class='app-dump-download btn btn-primary' href="#">Download Backup</a>
+    </div>
+  </form>
 </template>
 
