@@ -20,7 +20,7 @@ Package.onUse(function(api) {
   // SERVER
   api.use([
     'coffeescript',
-    'iron:router@1.0.7'
+    'iron:router@1.0.7' // for REST endpoint only
   ], ['server'])
 
   api.addFiles([
@@ -42,9 +42,3 @@ Package.onUse(function(api) {
   api.export('appDump', ['server'])
 
 });
-
-// Package.onTest(function(api) {
-//   api.use('tinytest');
-//   api.use('ba-re');
-//   api.addFiles('ba-re-tests.js');
-// });
