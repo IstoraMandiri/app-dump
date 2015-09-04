@@ -40,6 +40,14 @@
         <label>Query <span class='text-muted'>mongo find selector in JSON format</span></label>
         <input type="text" name="query" placeholder='e.g. {"deleted": {"$ne": true}}' class='form-control'>
       </div>
+      <div class="form-group">
+        <label>Parser <span class='text-muted'>output format</span></label>
+        <select name="parser" class="form-control">
+          <option value="bson">BSON - Required for binary data</option>
+          <option value="json">JSON - Human readable</option>
+        </select>
+
+      </div>
     {{/if}}
     <input type="hidden" value="{{downloadToken}}" id="token" name="token">
     <div class="form-group">

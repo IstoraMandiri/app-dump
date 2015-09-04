@@ -18,13 +18,17 @@ Router.map ->
 
 
       if req.method is 'GET'
+        req.query.parser?= ''
+        check req.query.parser, String
 
-        self.options = {}
+        self.options =
+          parser: req.query.parser
 
         # parse the collections
         if req.query.collections
           check req.query.collections, String
 
+          # convert commas into array
           self.options.collections = req.query.collections.split(',').map (col) -> col.trim()
 
           if self.options.collections.length is 0
@@ -55,8 +59,9 @@ Router.map ->
           host: req.headers.host.replace(/[^a-z0-9]/gi, '-').toLowerCase()
           app: process.env.PWD.split('/').pop().replace(/[^a-z0-9]/gi, '-').toLowerCase()
           date: moment().format("YY-MM-DD_HH-mm-ss")
+          parser: self.options.parser || 'bson'
 
-        filename = "meteordump_#{safe.app}_#{safe.host}_#{safe.date}.tar"
+        filename = "meteordump_#{safe.parser}_#{safe.app}_#{safe.host}_#{safe.date}.tar"
 
         res.statusCode = 200
         res.setHeader 'Content-disposition', "attachment; filename=#{filename}"
@@ -66,6 +71,7 @@ Router.map ->
           stream: res
           tar: 'dump.tar'
           query: self.options.query
+          parser: self.options.parser
 
         if self.options.collections
           backupOptions.collections = self.options.collections
