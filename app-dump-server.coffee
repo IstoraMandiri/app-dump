@@ -56,9 +56,17 @@ Router.map ->
           res.end 'Unauthorized'
           return false
 
+        meteor_root = Npm.require('fs').realpathSync( process.cwd() + '/../' )
+        application_root = Npm.require('fs').realpathSync( meteor_root + '/../' )
+
+        if  Npm.require('path').basename( Npm.require('fs').realpathSync( meteor_root + '/../../../' ) ) == '.meteor'
+          application_root =  Npm.require('fs').realpathSync( meteor_root + '/../../../../' )
+
+        separator = if application_root.indexOf('\\') > -1 then '\\' else '/'
+
         safe =
           host: req.headers.host.replace(/[^a-z0-9]/gi, '-').toLowerCase()
-          app: process.env.PWD.split('/').pop().replace(/[^a-z0-9]/gi, '-').toLowerCase()
+          app: application_root.split(separator).pop().replace(/[^a-z0-9]/gi, '-').toLowerCase()
           date: moment().format("YY-MM-DD_HH-mm-ss")
           parser: self.options.parser || 'bson'
 
