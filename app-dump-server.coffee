@@ -2,6 +2,7 @@ backup = Npm.require('mongodb-backup')
 restore = Npm.require('mongodb-restore')
 moment = Npm.require('moment')
 Busboy = Npm.require("busboy")
+path = Npm.require('path')
 fs = Npm.require('fs')
 
 appDump =
@@ -56,11 +57,11 @@ Router.map ->
           res.end 'Unauthorized'
           return false
 
-        meteor_root = Npm.require('fs').realpathSync( process.cwd() + '/../' )
-        application_root = Npm.require('fs').realpathSync( meteor_root + '/../' )
+        meteor_root = fs.realpathSync(process.cwd() + '/../')
+        application_root = fs.realpathSync(meteor_root + '/../')
 
-        if  Npm.require('path').basename( Npm.require('fs').realpathSync( meteor_root + '/../../../' ) ) == '.meteor'
-          application_root =  Npm.require('fs').realpathSync( meteor_root + '/../../../../' )
+        if path.basename(fs.realpathSync(meteor_root + '/../../../')) == '.meteor'
+          application_root = fs.realpathSync(meteor_root + '/../../../../')
 
         separator = if application_root.indexOf('\\') > -1 then '\\' else '/'
 
