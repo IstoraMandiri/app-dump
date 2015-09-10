@@ -2,6 +2,7 @@ backup = Npm.require('mongodb-backup')
 restore = Npm.require('mongodb-restore')
 moment = Npm.require('moment')
 Busboy = Npm.require("busboy")
+path = Npm.require('path')
 fs = Npm.require('fs')
 
 appDump =
@@ -56,9 +57,17 @@ Router.map ->
           res.end 'Unauthorized'
           return false
 
+        meteor_root = fs.realpathSync(process.cwd() + '/../')
+        application_root = fs.realpathSync(meteor_root + '/../')
+
+        if path.basename(fs.realpathSync(meteor_root + '/../../../')) == '.meteor'
+          application_root = fs.realpathSync(meteor_root + '/../../../../')
+
+        separator = if application_root.indexOf('\\') > -1 then '\\' else '/'
+
         safe =
           host: req.headers.host.replace(/[^a-z0-9]/gi, '-').toLowerCase()
-          app: process.env.PWD.split('/').pop().replace(/[^a-z0-9]/gi, '-').toLowerCase()
+          app: application_root.split(separator).pop().replace(/[^a-z0-9]/gi, '-').toLowerCase()
           date: moment().format("YY-MM-DD_HH-mm-ss")
           parser: self.options.parser || 'bson'
 
