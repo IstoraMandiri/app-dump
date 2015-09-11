@@ -12,9 +12,13 @@
   <form enctype="multipart/form-data">
       <input type="hidden" value="{{downloadToken}}" name="token">
     <div class="form-group">
+      {{#if uploading}}
+        <p>Uploading...</p>
+      {{else}}
       <span class="btn btn-success btn-file">
         <input type="file" class='app-dump-upload' name='appDumpUpload' accept=".tar"> Restore Backup
       </span>
+      {{/if}}
     </div>
     {{#if advanced}}
       <div class="form-group">

@@ -19,15 +19,21 @@ Template.appDumpDownload.events
 
     window.open collectionDumpUrl, collectionDumpUrl
 
-Template.appDumpUpload.events
-  'change .app-dump-upload' : (e) ->
-    $form = $(e.currentTarget).closest 'form'
-    formData = new FormData($form[0])
+Template.appDumpUpload.onCreated ->
+  @uploading = new ReactiveVar false
 
+Template.appDumpUpload.helpers
+  uploading: ->
+    Template.instance().uploading.get()
+
+Template.appDumpUpload.events
+  'change .app-dump-upload' : (e, tmpl) ->
+    $form = $(e.currentTarget).closest 'form'
+    tmpl.uploading.set true
     $.ajax
       type: "POST"
       url: '/appDump'
-      data: formData
+      data: new FormData($form[0])
       cache: false
       enctype: 'multipart/form-data'
       contentType: false
@@ -36,3 +42,5 @@ Template.appDumpUpload.events
       alert 'Restore Complete'
     .fail (err) ->
       alert err.responseText
+    .always ->
+      tmpl.uploading.set false

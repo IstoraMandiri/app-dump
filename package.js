@@ -32,7 +32,8 @@ Package.onUse(function(api) {
   api.use([
     'coffeescript',
     'templating',
-    'less'
+    'less',
+    'reactive-var'
   ], ['client'])
 
   api.addFiles([
