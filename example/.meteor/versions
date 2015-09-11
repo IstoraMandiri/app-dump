@@ -18,7 +18,7 @@ ejson@1.0.6
 email@1.0.6
 fastclick@1.0.3
 geojson-utils@1.0.3
-hitchcott:app-dump@0.3.3
+hitchcott:app-dump@0.4.0
 html-tools@1.0.4
 htmljs@1.0.4
 http@1.1.0
