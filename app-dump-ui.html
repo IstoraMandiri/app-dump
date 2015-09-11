@@ -37,6 +37,11 @@
   <form>
     {{#if advanced}}
       <div class="form-group">
+        <label>Filename <span class='text-muted'>output name, don't include the <code>.tgz</code> extension</span></label>
+        <input type="text" class='form-control' name="filename" placeholder="e.g. my_backup">
+      </div>
+
+      <div class="form-group">
         <label>Collections <span class='text-muted'>comma seperated list of collection names</span></label>
         <input type="text" class='form-control' name="collections" placeholder="e.g. Users, Posts, Comments">
       </div>

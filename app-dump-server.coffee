@@ -65,13 +65,18 @@ Router.map ->
 
         separator = if application_root.indexOf('\\') > -1 then '\\' else '/'
 
-        safe =
-          host: req.headers.host.replace(/[^a-z0-9]/gi, '-').toLowerCase()
-          app: application_root.split(separator).pop().replace(/[^a-z0-9]/gi, '-').toLowerCase()
-          date: moment().format("YY-MM-DD_HH-mm-ss")
-          parser: self.options.parser || 'bson'
+        if req.query.filename
+          check req.query.filename, String
+          filename = req.query.filename.replace(/[^a-z0-9_-]/gi, '_') + '.tar'
 
-        filename = "meteordump_#{safe.parser}_#{safe.app}_#{safe.host}_#{safe.date}.tar"
+        unless filename
+          safe =
+            host: req.headers.host.replace(/[^a-z0-9]/gi, '-').toLowerCase()
+            app: application_root.split(separator).pop().replace(/[^a-z0-9]/gi, '-').toLowerCase()
+            date: moment().format("YY-MM-DD_HH-mm-ss")
+            parser: self.options.parser || 'bson'
+
+          filename = "meteordump_#{safe.parser}_#{safe.app}_#{safe.host}_#{safe.date}.tar"
 
         res.statusCode = 200
         res.setHeader 'Content-disposition', "attachment; filename=#{filename}"
