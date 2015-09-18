@@ -10,16 +10,7 @@
 
 <template name="appDumpUpload">
   <form enctype="multipart/form-data">
-      <input type="hidden" value="{{downloadToken}}" name="token">
-    <div class="form-group">
-      {{#if uploading}}
-        <p>Uploading...</p>
-      {{else}}
-      <span class="btn btn-success btn-file">
-        <input type="file" class='app-dump-upload' name='appDumpUpload' accept=".tar"> Restore Backup
-      </span>
-      {{/if}}
-    </div>
+    <input type="hidden" value="{{downloadToken}}" name="token">
     {{#if advanced}}
       <div class="form-group">
         <label>
@@ -30,6 +21,15 @@
     {{else}}
       <input type="hidden" value="true" name="drop">
     {{/if}}
+    <div class="form-group">
+      {{#if uploading}}
+        <p>Uploading...</p>
+      {{else}}
+      <span class="btn btn-success btn-file">
+        <input type="file" class='app-dump-upload' name='appDumpUpload' accept=".tar"> Restore Backup
+      </span>
+      {{/if}}
+    </div>
   </form>
 </template>
 
