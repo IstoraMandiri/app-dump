@@ -17,7 +17,7 @@ Template.appDumpDownload.events
       if dataItem.value
         collectionDumpUrl += "&#{encodeURIComponent dataItem.name}=" + encodeURIComponent dataItem.value
 
-    window.open collectionDumpUrl, collectionDumpUrl
+    window.location.href = collectionDumpUrl
 
 Template.appDumpUpload.onCreated ->
   @uploading = new ReactiveVar false
