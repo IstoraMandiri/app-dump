@@ -140,7 +140,7 @@ Router.map ->
             uri: process.env.MONGO_URL
             stream: file
             parser: self.options.parser
-            drop: self.options.drop
+            dropCollections: self.options.drop
             callback : -> res.end()
 
           restore restoreOptions

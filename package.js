@@ -10,7 +10,7 @@ Npm.depends({
   "moment": "2.9.0",
   "busboy": "0.2.11",
   "mongodb-backup": "1.3.0",
-  "mongodb-restore": "https://github.com/hitchcott/mongodb-restore/archive/3bf27751b4d12eaddbba3149fc6d952d2fa4eecd.tar.gz"
+  "mongodb-restore": "1.4.1"
 });
 
 Package.onUse(function(api) {
