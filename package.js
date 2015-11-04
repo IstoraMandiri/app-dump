@@ -9,8 +9,8 @@ Package.describe({
 Npm.depends({
   "moment": "2.9.0",
   "busboy": "0.2.11",
-  "mongodb-backup": "1.3.0",
-  "mongodb-restore": "1.4.1"
+  "mongodb-backup": "1.4.2",
+  "mongodb-restore": "1.4.2"
 });
 
 Package.onUse(function(api) {
@@ -32,7 +32,7 @@ Package.onUse(function(api) {
   api.use([
     'coffeescript',
     'templating',
-    'less',
+    'less@2.5.1',
     'reactive-var'
   ], ['client'])
 
