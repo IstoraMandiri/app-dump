@@ -1,6 +1,6 @@
 Package.describe({
   name: 'hitchcott:app-dump',
-  version: '0.4.1',
+  version: '0.4.2',
   summary: 'In-app Backup and Restore for your Mongo Database',
   git: 'https://github.com/hitchcott/app-dump',
   documentation: 'README.md'
