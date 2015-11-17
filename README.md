@@ -1,5 +1,7 @@
 # Metoer App-Dump
 
+[![Join the chat at https://gitter.im/hitchcott/app-dump](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hitchcott/app-dump?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ### A Simple In-App Backup/Restore solution for Meteor
 
 [![App-Dump UI Demo](http://i.imgur.com/rlSvUzB.png)](http://app-dump-example.meteor.com)
