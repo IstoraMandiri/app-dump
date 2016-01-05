@@ -19,6 +19,7 @@ Package.onUse(function(api) {
 
   // SERVER
   api.use([
+    'check',
     'coffeescript',
     'iron:router@1.0.7' // for REST endpoint only
   ], ['server'])
