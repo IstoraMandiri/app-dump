@@ -1,4 +1,4 @@
-# Metoer App-Dump
+# Meteor App-Dump
 
 ### A Simple In-App Backup/Restore solution for Meteor
 
