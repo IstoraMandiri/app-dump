@@ -9,8 +9,8 @@ Package.describe({
 Npm.depends({
   "moment": "2.9.0",
   "busboy": "0.2.11",
-  "mongodb-backup": "~1.4.2",
-  "mongodb-restore": "~1.4.2"
+  "mongodb-backup": "1.4.8",
+  "mongodb-restore": "1.4.6"
 });
 
 Package.onUse(function(api) {
